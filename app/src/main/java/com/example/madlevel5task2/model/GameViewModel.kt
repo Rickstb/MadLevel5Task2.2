@@ -4,38 +4,36 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.madlevel5task2.repository.NoteRepository
+import com.example.madlevel5task2.repository.GameRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.util.*
 
-class NoteViewModel(application: Application) : AndroidViewModel(application) {
+class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     private val mainScope = CoroutineScope(Dispatchers.Main)
 
 
-    private val noteRepository =  NoteRepository(application.applicationContext)
+    private val noteRepository =  GameRepository(application.applicationContext)
 
-   val noteList:LiveData<List<Note>> = noteRepository.getNotepad()
+   val gameList:LiveData<List<Game>> = noteRepository.getNotepad()
 
-    fun insertNote(note: Note){
-        if (isNoteValid(note)){
-            mainScope.launch { noteRepository.insert(note) }
+    fun insertNote(game: Game){
+        if (isNoteValid(game)){
+            mainScope.launch { noteRepository.insert(game) }
         }
     }
 
-    fun deleteNote(note: Note){
-        mainScope.launch { noteRepository.deleteNote(note) }
+    fun deleteNote(game: Game){
+        mainScope.launch { noteRepository.deleteNote(game) }
             }
 
     val error = MutableLiveData<String>()
     val success = MutableLiveData<Boolean>()
 
 
-    private fun isNoteValid(note: Note): Boolean {
-        return if ( note.title.isBlank()) {
+    private fun isNoteValid(game: Game): Boolean {
+        return if ( game.title.isBlank()) {
                error.value = "Title must not be empty"
                 false
             }

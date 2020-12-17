@@ -11,31 +11,30 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.madlevel5task2.R
-import com.example.madlevel5task2.adapter.StartAdapter
-import com.example.madlevel5task2.model.Note
-import com.example.madlevel5task2.model.NoteViewModel
+import com.example.madlevel5task2.adapter.GameAdapter
+import com.example.madlevel5task2.model.Game
+import com.example.madlevel5task2.model.GameViewModel
 import kotlinx.android.synthetic.main.fragment_notepad.*
-import kotlinx.android.synthetic.main.item_list.*
 
 
-class NotepadFragment : Fragment() {
+class GamepadFragment : Fragment() {
 
-    private val list: ArrayList<Note> = arrayListOf()
-    private val startAdapter: StartAdapter = StartAdapter(list)
+    private val list: ArrayList<Game> = arrayListOf()
+    private val gameAdapter: GameAdapter = GameAdapter(list)
 
-    private val viewModel: NoteViewModel by viewModels()
+    private val viewModel: GameViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notepad, container, false)
+        return inflater.inflate(R.layout.fragment_gamepad, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rvList.adapter = startAdapter
+        rvList.adapter = gameAdapter
         rvList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         observeAddNoteResult()
 
@@ -43,10 +42,10 @@ class NotepadFragment : Fragment() {
     }
 
     private fun observeAddNoteResult() {
-        viewModel.noteList.observe(viewLifecycleOwner, Observer { notes ->
+        viewModel.gameList.observe(viewLifecycleOwner, Observer { notes ->
             list.clear()
             list.addAll(notes)
-            startAdapter.notifyDataSetChanged()
+            gameAdapter.notifyDataSetChanged()
         })
     }
 

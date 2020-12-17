@@ -10,23 +10,21 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.madlevel5task2.R
-import com.example.madlevel5task2.model.Note
-import com.example.madlevel5task2.model.NoteViewModel
+import com.example.madlevel5task2.model.Game
+import com.example.madlevel5task2.model.GameViewModel
 import kotlinx.android.synthetic.main.fragment_add_note.*
-import kotlinx.android.synthetic.main.fragment_add_note.view.*
 import java.time.LocalDate
-import java.time.Year
 
-class AddNoteFragment : Fragment(){
+class AddGameFragment : Fragment(){
 
-    private val viewModel: NoteViewModel by viewModels()
+    private val viewModel: GameViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_note, container, false)
+        return inflater.inflate(R.layout.fragment_add_game, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,7 +51,7 @@ class AddNoteFragment : Fragment(){
 
     private fun saveNote() {
         var date = LocalDate.of(edYear.editText?.text.toString().toInt(), edMonth.editText?.text.toString().toInt(), edDay.editText?.text.toString().toInt())
-        var note = Note(Title.editText?.text.toString(),date ,Text.editText?.text.toString())
+        var note = Game(Title.editText?.text.toString(),date ,Text.editText?.text.toString())
         viewModel.insertNote(note)
     }
 

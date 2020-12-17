@@ -1,20 +1,18 @@
 package com.example.madlevel5task2.adapter
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.browser.customtabs.CustomTabsIntent
 import androidx.recyclerview.widget.RecyclerView
 import com.example.madlevel5task2.R
-import com.example.madlevel5task2.model.Note
+import com.example.madlevel5task2.model.Game
 import kotlinx.android.synthetic.main.item_list.view.*
 
-class StartAdapter(private var listOfLocation: ArrayList<Note>) : RecyclerView.Adapter<StartAdapter.ViewHolder>() {
+class GameAdapter(private var listOfLocation: ArrayList<Game>) : RecyclerView.Adapter<GameAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun databinding(location: Note) {
+        fun databinding(location: Game) {
             itemView.itemTitle.text = location.title
             itemView.itemNote.text = location.text
             itemView.itemRelease.text = itemView.resources.getString(R.string.tv_release, location.release.dayOfMonth.toString(),location.release.month.name, location.release.year.toString())

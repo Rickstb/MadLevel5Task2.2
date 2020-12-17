@@ -7,21 +7,19 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.madlevel5task2.dao.NoteDao
-import com.example.madlevel5task2.model.Note
+import com.example.madlevel5task2.dao.GameDao
+import com.example.madlevel5task2.model.Game
 import com.example.madlevel5task2.utils.Converters
-import kotlinx.android.synthetic.main.fragment_add_note.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDate
-import java.util.*
 
-@Database(entities = [Note::class], version = 1, exportSchema = false)
+@Database(entities = [Game::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class NotepadRoomDatabase : RoomDatabase() {
 
-    abstract fun noteDao(): NoteDao
+    abstract fun noteDao(): GameDao
 
     companion object {
         private const val DATABASE_NAME = "NOTEPAD_DATABASE"
@@ -43,7 +41,7 @@ abstract class NotepadRoomDatabase : RoomDatabase() {
                                     super.onCreate(db)
                                     INSTANCE?.let { database ->
                                         CoroutineScope(Dispatchers.IO).launch {
-                                            var note = Note("Titel", LocalDate.now(), "Platform")
+                                            var note = Game("Titel", LocalDate.now(), "Platform")
                                             database.noteDao().insertNote(note)
                                         }
                                     }

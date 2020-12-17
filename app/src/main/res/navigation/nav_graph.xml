@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/notePadFragment"
-        android:name="com.example.madlevel5task2.ui.NotepadFragment"
+        android:name="com.example.madlevel5task2.ui.GamepadFragment"
         android:label="fragment_notepad"
-        tools:layout="@layout/fragment_notepad" >
+        tools:layout="@layout/fragment_gamepad" >
         <action
             android:id="@+id/action_notepadFragment_to_addNoteFragment"
             app:destination="@id/addNoteFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNoteFragment"
-        android:name="com.example.madlevel5task2.ui.AddNoteFragment"
+        android:name="com.example.madlevel5task2.ui.AddGameFragment"
         android:label="fragment_add_note"
-        tools:layout="@layout/fragment_add_note" />
+        tools:layout="@layout/fragment_add_game" />
 
 </navigation>

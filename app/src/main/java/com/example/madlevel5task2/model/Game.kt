@@ -8,7 +8,7 @@ import java.time.LocalDate
 import java.util.*
 
 @Entity(tableName = "noteTable")
-data class Note(
+data class Game(
 
         @ColumnInfo(name = "title")
     var title: String,
